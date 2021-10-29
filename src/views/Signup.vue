@@ -21,7 +21,15 @@
         <label>Password confirmation:</label>
         <input type="password" v-model="newUserParams.password_confirmation" />
       </div>
-      <input type="submit" value="Submit" />
+      <div>
+        <label>Location:</label>
+        <input type="text" v-model="newUserParams.location" />
+      </div>
+      <div>
+        <label>Image URL:</label>
+        <input type="text" v-model="newUserParams.image_url" />
+      </div>
+      <input type="submit" value="Signup" />
     </form>
   </div>
 </template>
