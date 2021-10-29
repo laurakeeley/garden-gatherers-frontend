@@ -1,6 +1,7 @@
 <template>
   <div class="categories">
     <h1>{{ category.name }}</h1>
+    <router-link :to="`/posts/new`">New Post</router-link>
     <div v-for="post in category.posts" v-bind:key="post.id">
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
