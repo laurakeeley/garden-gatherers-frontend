@@ -8,6 +8,18 @@
       <p>{{ post.updated_at }}</p>
     </div>
     <h3>Comments</h3>
+    <div>
+      <form v-on:submit.prevent="create_comment()">
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        </ul>
+        <div>
+          <input type="body" v-model="newCommentParams.body" />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
     <div v-for="comment in post.comments" v-bind:key="comment.id">
       <p>{{ comment.body }}</p>
       <p>{{ comment.image_url }}</p>
@@ -29,6 +41,8 @@ export default {
   data: function () {
     return {
       post: [],
+      errors: [],
+      newCommentParams: {},
     };
   },
   created: function () {
@@ -37,6 +51,18 @@ export default {
       this.post = response.data;
     });
   },
-  methods: {},
+  methods: {
+    create_comment: function () {
+      axios
+        .post("/comments/new", this.newCommentParams)
+        .then((response) => {
+          console.log("new comment", response.data);
+        })
+        .catch((error) => {
+          this.status = error.response.status;
+          this.errors = error.response.data.errors;
+        });
+    },
+  },
 };
 </script>
