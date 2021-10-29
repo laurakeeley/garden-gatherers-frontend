@@ -33,3 +33,19 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  data: function () {
+    return {};
+  },
+  methods: {
+    // isLoggedIn: function () {
+    //   return localStorage.jwt;
+    // },
+    getUserId: function () {
+      return localStorage.user_id;
+    },
+  },
+};
+</script>

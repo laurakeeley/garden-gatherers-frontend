@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import UsersShow from "../views/UsersShow.vue";
+import UsersUpdate from "../views/UsersUpdate.vue";
 import CategoriesShow from "../views/CategoriesShow.vue";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
@@ -32,6 +33,7 @@ const routes = [
   { path: "/login", name: "login", component: Login },
   { path: "/logout", name: "logout", component: Logout },
   { path: "/users/:id", name: "users-show", component: UsersShow },
+  { path: "/users/:id/edit", name: "users-update", component: UsersUpdate },
   { path: "/categories/:id", name: "categories", component: CategoriesShow },
   { path: "/posts/new", name: "posts-new", component: PostsNew },
   { path: "/posts/:id", name: "posts-show", component: PostsShow },

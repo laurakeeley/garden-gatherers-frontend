@@ -2,7 +2,11 @@
   <div class="users-show">
     <div>
       <h1>{{ user.name }}</h1>
-      <!-- <router-link :to="`/posts/new`">New Post</router-link> -->
+      <div v-if="$parent.getUserId() == user.id">
+        <router-link :to="`/users/${user.id}/edit`">Edit</router-link>
+        <br />
+        <!-- <button v-on:click="destroyRecipe()">Delete</button> -->
+      </div>
       <h3>{{ user.location }}</h3>
       <img v-bind:src="user.image_url" v-bind:alt="user.name" />
     </div>
