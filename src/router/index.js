@@ -9,6 +9,7 @@ import CategoriesShow from "../views/CategoriesShow.vue";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
 import MeetupsIndex from "../views/MeetupsIndex.vue";
+import MeetupsShow from "../views/MeetupsShow.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,7 @@ const routes = [
   { path: "/posts/new", name: "posts-new", component: PostsNew },
   { path: "/posts/:id", name: "posts-show", component: PostsShow },
   { path: "/meetups", name: "meetups-index", component: MeetupsIndex },
+  { path: "/meetups/:id", name: "meetups-show", component: MeetupsShow },
 ];
 
 const router = new VueRouter({
