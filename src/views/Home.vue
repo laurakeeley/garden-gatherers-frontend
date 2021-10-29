@@ -1,19 +1,36 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <div v-for="post in posts" v-bind:key="post.id">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+      <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+      <p>{{ post.created_at }}</p>
+      <p>{{ post.updated_at }}</p>
+    </div>
   </div>
 </template>
 
 <style></style>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      message: "Welcome to Vue.js!",
+      posts: [],
     };
   },
-  created: function () {},
-  methods: {},
+  created: function () {
+    this.indexPosts();
+  },
+  methods: {
+    indexPosts: function () {
+      axios.get("/posts").then((response) => {
+        console.log("posts index", response);
+        this.posts = response.data;
+      });
+    },
+  },
 };
 </script>
