@@ -4,7 +4,8 @@
       <h2>{{ meetup.title }}</h2>
       <p>{{ meetup.location }}</p>
       <p>{{ meetup.time }}</p>
-      <img v-bind:src="meetup.image_url" v-bind:alt="meetup.title" />
+      <img v-bind:src="meetup.image_url" v-bind:alt="meetup.title" /> <br />
+      <router-link :to="`/meetups/${meetup.id}`">More Info</router-link>
     </div>
   </div>
 </template>
