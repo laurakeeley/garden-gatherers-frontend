@@ -9,6 +9,8 @@
       <input type="text" v-model="newPostParams.title" />
       Body:
       <input type="text" v-model="newPostParams.body" />
+      Image:
+      <input type="text" v-model="newPostParams.image_url" />
       <input type="submit" value="Create" />
     </form>
   </div>
@@ -19,7 +21,9 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      newPostParams: {},
+      newPostParams: {
+        category_id: localStorage.category_id,
+      },
       errors: [],
     };
   },

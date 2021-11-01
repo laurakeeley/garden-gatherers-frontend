@@ -2,6 +2,11 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
+      <!-- <div v-if="$parent.getUserId() == post.user.id">
+        <button :to="`/posts/${post.id}/edit`">Edit</button>
+        <br />
+        <button v-on:click="destroyPost()">Delete Post</button>
+      </div> -->
       <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <p>{{ post.created_at }}</p>
@@ -28,6 +33,12 @@
       <p>{{ comment.user.name }}</p>
       <p>{{ comment.user.location }}</p>
       <img v-bind:src="comment.user.image_url" v-bind:alt="comment.user" />
+      <!-- <div v-if="$parent.getUserId() == comment.user.id"> -->
+
+      <button :to="`/comments/${comment.id}/edit`">Edit</button>
+      <br />
+      <button v-on:click="destroyUser()">Delete User</button>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -42,7 +53,9 @@ export default {
     return {
       post: [],
       errors: [],
-      newCommentParams: {},
+      newCommentParams: {
+        post_id: this.$route.params.id,
+      },
     };
   },
   created: function () {
@@ -54,14 +67,21 @@ export default {
   methods: {
     create_comment: function () {
       axios
-        .post("/comments/new", this.newCommentParams)
+        .post("/comments", this.newCommentParams)
         .then((response) => {
           console.log("new comment", response.data);
+          this.post.comments.push(response.data);
         })
         .catch((error) => {
           this.status = error.response.status;
           this.errors = error.response.data.errors;
         });
+    },
+    destroyPost: function () {
+      axios.delete("/posts/" + this.$route.params.id).then((response) => {
+        console.log(response.data);
+        this.$router.push("/");
+      });
     },
   },
 };

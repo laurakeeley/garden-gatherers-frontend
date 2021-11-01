@@ -9,6 +9,7 @@ import UsersUpdate from "../views/UsersUpdate.vue";
 import CategoriesShow from "../views/CategoriesShow.vue";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
+import PostsUpdate from "../views/PostsUpdate.vue";
 import MeetupsIndex from "../views/MeetupsIndex.vue";
 import MeetupsShow from "../views/MeetupsShow.vue";
 
@@ -37,6 +38,7 @@ const routes = [
   { path: "/categories/:id", name: "categories", component: CategoriesShow },
   { path: "/posts/new", name: "posts-new", component: PostsNew },
   { path: "/posts/:id", name: "posts-show", component: PostsShow },
+  { path: "/posts/:id/edit", name: "posts-update", component: PostsUpdate },
   { path: "/meetups", name: "meetups-index", component: MeetupsIndex },
   { path: "/meetups/:id", name: "meetups-show", component: MeetupsShow },
 ];
