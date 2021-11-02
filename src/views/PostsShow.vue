@@ -95,13 +95,13 @@ export default {
       this.currentComment = comment;
       document.querySelector("#comment-details").showModal();
     },
-    updateComment: function (comment) {
-      var editCommentParams = comment;
+    updateComment: function (currentComment) {
+      var editCommentParams = currentComment;
       axios
         .patch("/comments/" + this.currentComment.id, editCommentParams)
         .then((response) => {
           console.log("comments update", response);
-          this.currentComment = {};
+          // this.currentComment = {};
         })
         .catch((error) => {
           console.log("comments update error", error.response);
@@ -114,7 +114,7 @@ export default {
       });
     },
     destroyComment: function () {
-      axios.delete("/comments/" + this.post.comment.id).then((response) => {
+      axios.delete("/comments/" + this.post.comments.id).then((response) => {
         console.log(response.data);
       });
     },
