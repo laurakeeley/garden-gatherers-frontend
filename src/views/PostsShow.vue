@@ -2,11 +2,11 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
-      <!-- <div v-if="$parent.getUserId() == post.user.id">
+      <div v-if="$parent.getUserId() == post.user_id">
         <button :to="`/posts/${post.id}/edit`">Edit</button>
         <br />
         <button v-on:click="destroyPost()">Delete Post</button>
-      </div> -->
+      </div>
       <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <p>{{ post.created_at }}</p>
@@ -33,12 +33,11 @@
       <p>{{ comment.user.name }}</p>
       <p>{{ comment.user.location }}</p>
       <img v-bind:src="comment.user.image_url" v-bind:alt="comment.user" />
-      <!-- <div v-if="$parent.getUserId() == comment.user.id"> -->
-
-      <button :to="`/comments/${comment.id}/edit`">Edit</button>
-      <br />
-      <button v-on:click="destroyUser()">Delete User</button>
-      <!-- </div> -->
+      <div v-if="$parent.getUserId() == comment.user.id">
+        <button :to="`/comments/${comment.id}/edit`">Edit</button>
+        <br />
+        <button v-on:click="destroyComment()">Delete Comment</button>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +59,7 @@ export default {
   },
   created: function () {
     axios.get("/posts/" + this.$route.params.id).then((response) => {
-      console.log("posts show", response);
+      console.log("posts show", response.data);
       this.post = response.data;
     });
   },
@@ -81,6 +80,11 @@ export default {
       axios.delete("/posts/" + this.$route.params.id).then((response) => {
         console.log(response.data);
         this.$router.push("/");
+      });
+    },
+    destroyComment: function () {
+      axios.delete("/comments/" + this.post.comment.id).then((response) => {
+        console.log(response.data);
       });
     },
   },

@@ -2,10 +2,15 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Garden Gatherers</router-link> |
-      <router-link to="/meetups">Meetups</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link> |
-      <router-link to="/signup">Signup</router-link>
+      <router-link to="/meetups">Meetups</router-link>
+      <span v-if="!isLoggedIn()">
+        | <router-link to="/login">Login</router-link> |
+        <router-link to="/signup">Signup</router-link>
+      </span>
+      <span v-if="isLoggedIn()">
+        | <router-link to="/logout">Logout</router-link> |
+        <router-link :to="`/users/${getUserId()}`">Me</router-link>
+      </span>
     </div>
     <router-view />
   </div>
@@ -40,9 +45,9 @@ export default {
     return {};
   },
   methods: {
-    // isLoggedIn: function () {
-    //   return localStorage.jwt;
-    // },
+    isLoggedIn: function () {
+      return localStorage.jwt;
+    },
     getUserId: function () {
       return localStorage.user_id;
     },
