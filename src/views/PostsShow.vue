@@ -34,7 +34,19 @@
       <p>{{ comment.user.location }}</p>
       <img v-bind:src="comment.user.image_url" v-bind:alt="comment.user" />
       <div v-if="$parent.getUserId() == comment.user.id">
-        <button :to="`/comments/${comment.id}/edit`">Edit</button>
+        <button v-on:click="editComment(comment)">Edit</button>
+        <dialog id="comment-details">
+          <form method="dialog">
+            <h1>Edit Comment</h1>
+            <p>Body: <input type="text" v-model="currentComment.body" /></p>
+            <p>
+              Image Url:
+              <input type="text" v-model="currentComment.image_url" />
+            </p>
+            <button v-on:click="updateComment(currentComment)">Update</button>
+            <button>Close</button>
+          </form>
+        </dialog>
         <br />
         <button v-on:click="destroyComment()">Delete Comment</button>
       </div>
@@ -55,6 +67,8 @@ export default {
       newCommentParams: {
         post_id: this.$route.params.id,
       },
+      currentComment: {},
+      editCommentParams: {},
     };
   },
   created: function () {
@@ -74,6 +88,23 @@ export default {
         .catch((error) => {
           this.status = error.response.status;
           this.errors = error.response.data.errors;
+        });
+    },
+    editComment: function (comment) {
+      console.log(comment);
+      this.currentComment = comment;
+      document.querySelector("#comment-details").showModal();
+    },
+    updateComment: function (comment) {
+      var editCommentParams = comment;
+      axios
+        .patch("/comments/" + this.currentComment.id, editCommentParams)
+        .then((response) => {
+          console.log("comments update", response);
+          this.currentComment = {};
+        })
+        .catch((error) => {
+          console.log("comments update error", error.response);
         });
     },
     destroyPost: function () {
