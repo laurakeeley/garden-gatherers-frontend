@@ -1,7 +1,9 @@
 <template>
-  <div class="categories">
+  <div class="categories-show">
     <h1>{{ category.name }}</h1>
-    <router-link :to="`/posts/new`">New Post</router-link>
+    <router-link :to="`/posts/new?category=${category.id}`"
+      >New Post</router-link
+    >
     <!-- <button v-on:click="newPost()">New Post</button> -->
 
     <div v-for="post in category.posts" v-bind:key="post.id">
@@ -30,8 +32,6 @@ export default {
   created: function () {
     axios.get("/categories/" + this.$route.params.id).then((response) => {
       console.log("categories show", response);
-      localStorage.removeItem("category_id");
-      localStorage.setItem("category_id", response.data.id);
       this.category = response.data;
     });
   },

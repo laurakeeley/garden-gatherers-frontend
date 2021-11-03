@@ -35,7 +35,11 @@ const routes = [
   { path: "/logout", name: "logout", component: Logout },
   { path: "/users/:id", name: "users-show", component: UsersShow },
   { path: "/users/:id/edit", name: "users-update", component: UsersUpdate },
-  { path: "/categories/:id", name: "categories", component: CategoriesShow },
+  {
+    path: "/categories/:id",
+    name: "categories-show",
+    component: CategoriesShow,
+  },
   { path: "/posts/new", name: "posts-new", component: PostsNew },
   { path: "/posts/:id", name: "posts-show", component: PostsShow },
   { path: "/posts/:id/edit", name: "posts-update", component: PostsUpdate },

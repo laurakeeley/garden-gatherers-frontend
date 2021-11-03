@@ -7,8 +7,14 @@
       </ul>
       Title:
       <input type="text" v-model="post.title" />
-      Body:
-      <input type="text" v-model="post.body" />
+      <div id="froala-editor">
+        <froala
+          id="edit"
+          tag="textarea"
+          :config="config"
+          v-model="editPostParams.body"
+        ></froala>
+      </div>
       Image:
       <input type="text" v-model="post.image_url" />
       <input type="submit" value="Update" />
@@ -24,11 +30,19 @@ export default {
       post: {},
       errors: [],
       editPostParams: {},
+      config: {
+        placeholderText: this.post.id,
+        events: {
+          "froalaEditor.initialized": function () {
+            console.log("initialized");
+          },
+        },
+      },
     };
   },
   created: function () {
     axios.get("/posts/" + this.$route.params.id).then((response) => {
-      console.log("posts show", response);
+      console.log("posts show", response.data);
       this.post = response.data;
     });
   },

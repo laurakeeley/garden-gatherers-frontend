@@ -2,6 +2,9 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Garden Gatherers</router-link> |
+      <router-link to="/categories/1">Plants</router-link> |
+      <router-link to="/categories/2">Bees</router-link> |
+      <router-link to="/categories/3">Flowers</router-link> |
       <router-link to="/meetups">Meetups</router-link>
       <span v-if="!isLoggedIn()">
         | <router-link to="/login">Login</router-link> |
@@ -12,7 +15,7 @@
         <router-link :to="`/users/${getUserId()}`">Me</router-link>
       </span>
     </div>
-    <router-view />
+    <router-view :key="$route.fullPath" />
   </div>
 </template>
 

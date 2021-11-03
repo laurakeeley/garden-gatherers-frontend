@@ -3,18 +3,18 @@
     <div>
       <h2>{{ post.title }}</h2>
       <div v-if="$parent.getUserId() == post.user_id">
-        <button :to="`/posts/${post.id}/edit`">Edit</button>
+        <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
         <br />
         <button v-on:click="destroyPost()">Delete Post</button>
       </div>
-      <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+      <div v-html="post.body"></div>
       <p>{{ post.created_at }}</p>
       <p>{{ post.updated_at }}</p>
     </div>
     <h3>Comments</h3>
     <div>
-      <form v-on:submit.prevent="create_comment()">
+      <form v-on:submit.prevent="createComment()">
         <ul>
           <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
@@ -35,21 +35,21 @@
       <img v-bind:src="comment.user.image_url" v-bind:alt="comment.user" />
       <div v-if="$parent.getUserId() == comment.user.id">
         <button v-on:click="editComment(comment)">Edit</button>
-        <dialog id="comment-details">
-          <form method="dialog">
-            <h1>Edit Comment</h1>
-            <p>Body: <input type="text" v-model="currentComment.body" /></p>
-            <p>
-              Image Url:
-              <input type="text" v-model="currentComment.image_url" />
-            </p>
-            <button v-on:click="updateComment(currentComment)">Update</button>
-            <button>Close</button>
-          </form>
-        </dialog>
         <br />
-        <button v-on:click="destroyComment()">Delete Comment</button>
+        <button v-on:click="destroyComment(comment)">Delete Comment</button>
       </div>
+      <dialog id="comment-details">
+        <form method="dialog">
+          <h1>Edit Comment</h1>
+          <p>Body: <input type="text" v-model="currentComment.body" /></p>
+          <p>
+            Image Url:
+            <input type="text" v-model="currentComment.image_url" />
+          </p>
+          <button v-on:click="updateComment(currentComment)">Update</button>
+          <button>Close</button>
+        </form>
+      </dialog>
     </div>
   </div>
 </template>
@@ -78,7 +78,7 @@ export default {
     });
   },
   methods: {
-    create_comment: function () {
+    createComment: function () {
       axios
         .post("/comments", this.newCommentParams)
         .then((response) => {
@@ -95,13 +95,12 @@ export default {
       this.currentComment = comment;
       document.querySelector("#comment-details").showModal();
     },
-    updateComment: function (currentComment) {
-      var editCommentParams = currentComment;
+    updateComment: function (comment) {
+      var editCommentParams = comment;
       axios
         .patch("/comments/" + this.currentComment.id, editCommentParams)
         .then((response) => {
           console.log("comments update", response);
-          // this.currentComment = {};
         })
         .catch((error) => {
           console.log("comments update error", error.response);
@@ -113,8 +112,8 @@ export default {
         this.$router.push("/");
       });
     },
-    destroyComment: function () {
-      axios.delete("/comments/" + this.post.comments.id).then((response) => {
+    destroyComment: function (comment) {
+      axios.delete("/comments/" + comment.id).then((response) => {
         console.log(response.data);
       });
     },
