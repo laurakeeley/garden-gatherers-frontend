@@ -2,6 +2,7 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
+      <p>Category: {{ post.category.name }}</p>
       <div v-if="$parent.getUserId() == post.user_id">
         <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
         <br />

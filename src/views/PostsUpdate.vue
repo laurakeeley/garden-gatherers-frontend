@@ -31,7 +31,7 @@ export default {
       errors: [],
       editPostParams: {},
       config: {
-        placeholderText: this.post.id,
+        placeholderText: "Current body params go here",
         events: {
           "froalaEditor.initialized": function () {
             console.log("initialized");
