@@ -7,7 +7,7 @@
         post.user.name
       }}</router-link>
       <p>Category: {{ post.category.name }}</p>
-      <div v-if="$parent.getUserId() == post.user_id">
+      <div v-if="$parent.getUserId() == post.user.id">
         <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
         <br />
         <button v-on:click="destroyPost()">Delete Post</button>
