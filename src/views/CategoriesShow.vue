@@ -16,8 +16,8 @@
       }}</router-link>
       <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-      <p>{{ post.created_at }}</p>
-      <p>{{ post.updated_at }}</p>
+      <p>Created: {{ calendarDate(post.created_at) }}</p>
+      <p>Updated: {{ relativeDate(post.updated_at) }}</p>
     </div>
   </div>
 </template>
@@ -26,6 +26,13 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
+
+var calendar = require("dayjs/plugin/calendar");
+dayjs.extend(calendar);
 
 export default {
   data: function () {
@@ -39,6 +46,13 @@ export default {
       this.category = response.data;
     });
   },
-  methods: {},
+  methods: {
+    relativeDate: function (updated_at) {
+      return dayjs(updated_at).fromNow();
+    },
+    calendarDate: function (created_at) {
+      return dayjs(created_at).calendar();
+    },
+  },
 };
 </script>
