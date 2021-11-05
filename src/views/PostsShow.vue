@@ -2,6 +2,7 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
+      <p>Author: {{ post.user.name }}</p>
       <p>Category: {{ post.category.name }}</p>
       <div v-if="$parent.getUserId() == post.user_id">
         <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
@@ -39,19 +40,19 @@
         <br />
         <button v-on:click="destroyComment(comment)">Delete Comment</button>
       </div>
-      <dialog id="comment-details">
-        <form method="dialog">
-          <h1>Edit Comment</h1>
-          <p>Body: <input type="text" v-model="currentComment.body" /></p>
-          <p>
-            Image Url:
-            <input type="text" v-model="currentComment.image_url" />
-          </p>
-          <button v-on:click="updateComment(currentComment)">Update</button>
-          <button>Close</button>
-        </form>
-      </dialog>
     </div>
+    <dialog id="comment-details">
+      <form method="dialog">
+        <h1>Edit Comment</h1>
+        <p>Body: <input type="text" v-model="currentComment.body" /></p>
+        <p>
+          Image Url:
+          <input type="text" v-model="currentComment.image_url" />
+        </p>
+        <button v-on:click="updateComment(currentComment)">Update</button>
+        <button>Close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 

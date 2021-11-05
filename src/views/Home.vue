@@ -4,6 +4,7 @@
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
       </h2>
+      <p>Author: {{ post.user.name }}</p>
       <p>Category: {{ post.category.name }}</p>
       <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
