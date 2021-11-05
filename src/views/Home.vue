@@ -14,8 +14,8 @@
       <p>Category: {{ post.category.name }}</p>
       <p>{{ post.body }}</p>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-      <p>{{ post.created_at }}</p>
-      <p>{{ post.updated_at }}</p>
+      <p>Created: {{ calendarDate(post.created_at) }}</p>
+      <p>Updated: {{ relativeDate(post.updated_at) }}</p>
     </div>
   </div>
 </template>
@@ -26,6 +26,12 @@
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
 import dayjs from "dayjs";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
+
+var calendar = require("dayjs/plugin/calendar");
+dayjs.extend(calendar);
 
 export default {
   mixins: [Vue2Filters.mixin],
@@ -39,6 +45,12 @@ export default {
     this.indexPosts();
   },
   methods: {
+    relativeDate: function (updated_at) {
+      return dayjs(updated_at).fromNow();
+    },
+    calendarDate: function (created_at) {
+      return dayjs().calendar(dayjs(created_at));
+    },
     indexPosts: function () {
       axios.get("/posts").then((response) => {
         console.log("posts index", response);
