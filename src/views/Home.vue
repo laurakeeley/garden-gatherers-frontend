@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <div v-for="post in posts" v-bind:key="post.id">
+    <div>
+      Search: <input type="text" v-model="sortAttribute" list="posts" />
+    </div>
+    <div v-for="post in filterBy(posts, postAttribute)" v-bind:key="post.id">
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
       </h2>
@@ -21,11 +24,14 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
       posts: [],
+      postAttribute: "",
     };
   },
   created: function () {
