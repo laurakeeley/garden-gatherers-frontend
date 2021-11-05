@@ -49,7 +49,7 @@ export default {
       return dayjs(updated_at).fromNow();
     },
     calendarDate: function (created_at) {
-      return dayjs().calendar(dayjs(created_at));
+      return dayjs(created_at).calendar();
     },
     indexPosts: function () {
       axios.get("/posts").then((response) => {

@@ -14,8 +14,8 @@
       </div>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <div v-html="post.body"></div>
-      <p>{{ post.created_at }}</p>
-      <p>{{ post.updated_at }}</p>
+      <p>Created: {{ calendarDate(post.created_at) }}</p>
+      <p>Updated: {{ relativeDate(post.updated_at) }}</p>
     </div>
     <h3>Comments</h3>
     <div>
@@ -65,6 +65,13 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
+
+var calendar = require("dayjs/plugin/calendar");
+dayjs.extend(calendar);
 
 export default {
   data: function () {
@@ -85,6 +92,12 @@ export default {
     });
   },
   methods: {
+    relativeDate: function (updated_at) {
+      return dayjs(updated_at).fromNow();
+    },
+    calendarDate: function (created_at) {
+      return dayjs(created_at).calendar();
+    },
     createComment: function () {
       axios
         .post("/comments", this.newCommentParams)
