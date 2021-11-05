@@ -15,7 +15,7 @@
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
       </h2>
       <p>{{ post.body }}</p>
-      <p>Category: {{ post.category.name }}</p>
+      <!-- <p>Category: {{ post.category.title }}</p> -->
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <p>{{ post.created_at }}</p>
       <p>{{ post.updated_at }}</p>

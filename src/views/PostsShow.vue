@@ -2,7 +2,10 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
-      <p>Author: {{ post.user.name }}</p>
+      <p>Author:</p>
+      <router-link :to="`/users/${post.user.id}`">{{
+        post.user.name
+      }}</router-link>
       <p>Category: {{ post.category.name }}</p>
       <div v-if="$parent.getUserId() == post.user_id">
         <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
@@ -32,7 +35,9 @@
       <p>{{ comment.image_url }}</p>
       <p>{{ comment.created_at }}</p>
       <p>{{ comment.updated_at }}</p>
-      <p>{{ comment.user.name }}</p>
+      <router-link :to="`/users/${comment.user.id}`">{{
+        comment.user.name
+      }}</router-link>
       <p>{{ comment.user.location }}</p>
       <img v-bind:src="comment.user.image_url" v-bind:alt="comment.user" />
       <div v-if="$parent.getUserId() == comment.user.id">
