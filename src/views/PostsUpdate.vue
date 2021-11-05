@@ -12,7 +12,7 @@
           id="edit"
           tag="textarea"
           :config="config"
-          v-model="editPostParams.body"
+          v-model="post.body"
         ></froala>
       </div>
       Image:
@@ -31,7 +31,6 @@ export default {
       errors: [],
       editPostParams: {},
       config: {
-        placeholderText: this.post.body,
         events: {
           "froalaEditor.initialized": function () {
             console.log("initialized");

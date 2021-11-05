@@ -2,6 +2,11 @@
   <div class="posts-show">
     <div>
       <h2>{{ post.title }}</h2>
+      <div id="froala-editor" style="display: inline-block">
+        Click here to edit this text in a Froala popup.
+      </div>
+      <br />
+
       <p>Author:</p>
       <router-link :to="`/users/${post.user.id}`">{{
         post.user.name
