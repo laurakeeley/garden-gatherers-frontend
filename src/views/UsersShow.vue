@@ -10,7 +10,11 @@
       <h3>{{ user.location }}</h3>
       <img v-bind:src="user.image_url" v-bind:alt="user.name" />
     </div>
-    <div v-for="post in user.posts" v-bind:key="post.id">
+    <div>Search: <input type="text" v-model="postAttribute" /></div>
+    <div
+      v-for="post in filterBy(user.posts, postAttribute)"
+      v-bind:key="post.id"
+    >
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
       </h2>
@@ -27,12 +31,15 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 import dayjs from "dayjs";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
       user: [],
+      postAttribute: "",
     };
   },
   created: function () {
