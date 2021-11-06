@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div>
-      Search: <input type="text" v-model="sortAttribute" list="posts" />
-    </div>
+    <div>Search: <input type="text" v-model="postAttribute" /></div>
     <div v-for="post in filterBy(posts, postAttribute)" v-bind:key="post.id">
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
