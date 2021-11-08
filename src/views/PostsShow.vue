@@ -292,181 +292,59 @@
             <!--end row-->
 
             <div class="row">
-              <div class="col-12 mt-4 pt-2">
+              <div
+                v-for="comment in post.comments"
+                v-bind:key="comment.id"
+                class="col-12 mt-4 pt-2"
+              >
                 <div class="p-4 shadow rounded">
                   <ul class="media-list list-unstyled mb-0">
                     <li class="comment-desk">
-                      <a href="#" class="float-end text-muted"
-                        ><i class="mdi mdi-reply"></i>&nbsp; Reply</a
+                      <a
+                        v-if="$parent.getUserId() == comment.user.id"
+                        v-on:click="destroyComment(comment)"
+                        class="float-end text-muted"
+                        >&nbsp; Delete</a
                       >
+                      <a
+                        v-if="$parent.getUserId() == comment.user.id"
+                        v-on:click="editComment(comment)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#comment-details"
+                        class="float-end text-muted"
+                        >&nbsp; Edit</a
+                      >
+
                       <div class="commentor">
                         <a class="float-start pe-3" href="#">
                           <img
-                            src="images/client/01.jpg"
+                            v-bind:src="comment.user.image_url"
+                            v-bind:alt="comment.user"
                             class="img-fluid avatar avatar-small rounded-pill"
-                            alt=""
                           />
                         </a>
                         <div class="overflow-hidden d-block">
                           <h4 class="media-heading mb-0">
-                            <a href="javascript:void(0)" class="text-dark"
-                              >Lorenzo Peterson</a
+                            <router-link
+                              :to="`/users/${comment.user.id}`"
+                              class="text-dark"
+                              >{{ comment.user.name }}</router-link
                             >
                           </h4>
-                          <small class="text-muted"
-                            >20th October, 2019 at 01:25 pm</small
-                          >
+                          <small class="text-muted">{{
+                            comment.user.location
+                          }}</small>
+                          <br />
+                          <small class="text-muted">{{
+                            calendarDate(comment.created_at)
+                          }}</small>
                         </div>
                       </div>
                       <div class="mt-3">
                         <p class="text-muted fst-italic p-3 bg-light rounded">
-                          " There are many variations of passages of Lorem Ipsum
-                          available, but the majority have suffered alteration
-                          in some form, by injected humour "
+                          {{ comment.body }}
                         </p>
                       </div>
-                    </li>
-
-                    <li class="comment-desk mt-4">
-                      <a href="#" class="float-end text-muted"
-                        ><i class="mdi mdi-reply"></i>&nbsp; Reply</a
-                      >
-                      <div class="commentor">
-                        <a class="float-start pe-3" href="#">
-                          <img
-                            src="images/client/02.jpg"
-                            class="img-fluid avatar avatar-small rounded-pill"
-                            alt=""
-                          />
-                        </a>
-                        <div class="overflow-hidden d-block">
-                          <h4 class="media-heading mb-0">
-                            <a href="javascript:void(0)" class="text-dark"
-                              >Tammy Camacho</a
-                            >
-                          </h4>
-                          <small class="text-muted"
-                            >20th October, 2019 at 05:44 pm</small
-                          >
-                        </div>
-                      </div>
-                      <div class="mt-3">
-                        <p class="text-muted fst-italic p-3 bg-light rounded">
-                          " There are many variations of passages of Lorem Ipsum
-                          available, but the majority have suffered alteration
-                          in some form, by injected humour "
-                        </p>
-                      </div>
-                    </li>
-
-                    <li class="comment-desk mt-4">
-                      <a href="#" class="float-end text-muted"
-                        ><i class="mdi mdi-reply"></i>&nbsp; Reply</a
-                      >
-                      <div class="commentor">
-                        <a class="float-start pe-3" href="#">
-                          <img
-                            src="images/client/03.jpg"
-                            class="img-fluid avatar avatar-small rounded-pill"
-                            alt=""
-                          />
-                        </a>
-                        <div class="overflow-hidden d-block">
-                          <h4 class="media-heading mb-0">
-                            <a href="javascript:void(0)" class="text-dark"
-                              >Tammy Camacho</a
-                            >
-                          </h4>
-                          <small class="text-muted"
-                            >21th October, 2019 at 03:44 pm</small
-                          >
-                        </div>
-                      </div>
-                      <div class="mt-3">
-                        <p class="text-muted fst-italic p-3 bg-light rounded">
-                          " There are many variations of passages of Lorem Ipsum
-                          available, but the majority have suffered alteration
-                          in some form, by injected humour "
-                        </p>
-                      </div>
-
-                      <ul class="ps-4 ps-md-5 list-unstyled sub-comment">
-                        <li class="comment-desk mt-4">
-                          <a href="#" class="float-end text-muted"
-                            ><i class="mdi mdi-reply"></i>&nbsp; Reply</a
-                          >
-                          <div class="commentor">
-                            <a class="float-start pe-3" href="#">
-                              <img
-                                src="images/client/04.jpg"
-                                class="
-                                  img-fluid
-                                  avatar avatar-small
-                                  rounded-pill
-                                "
-                                alt=""
-                              />
-                            </a>
-                            <div class="overflow-hidden d-block">
-                              <h4 class="media-heading mb-0">
-                                <a href="javascript:void(0)" class="text-dark"
-                                  >Calvin Camacho</a
-                                >
-                              </h4>
-                              <small class="text-muted"
-                                >21th October, 2019 at 05:55 pm</small
-                              >
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p
-                              class="text-muted fst-italic p-3 bg-light rounded"
-                            >
-                              " There are many variations of passages of Lorem
-                              Ipsum available, but the majority have suffered
-                              alteration in some form, by injected humour "
-                            </p>
-                          </div>
-                        </li>
-
-                        <li class="comment-desk mt-4">
-                          <a href="#" class="float-end text-muted"
-                            ><i class="mdi mdi-reply"></i>&nbsp; Reply</a
-                          >
-                          <div class="commentor">
-                            <a class="float-start pe-3" href="#">
-                              <img
-                                src="images/client/03.jpg"
-                                class="
-                                  img-fluid
-                                  avatar avatar-small
-                                  rounded-pill
-                                "
-                                alt=""
-                              />
-                            </a>
-                            <div class="overflow-hidden d-block">
-                              <h4 class="media-heading mb-0">
-                                <a href="javascript:void(0)" class="text-dark"
-                                  >Tammy Camacho</a
-                                >
-                              </h4>
-                              <small class="text-muted"
-                                >22th October, 2019 at 05:44 pm</small
-                              >
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p
-                              class="text-muted fst-italic p-3 bg-light rounded"
-                            >
-                              " There are many variations of passages of Lorem
-                              Ipsum available, but the majority have suffered
-                              alteration in some form, by injected humour "
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -742,7 +620,7 @@
       <p>Created: {{ calendarDate(post.created_at) }}</p>
       <p>Updated: {{ relativeDate(post.updated_at) }}</p>
     </div> -->
-    <h3>Comments</h3>
+    <!-- <h3>Comments</h3>
     <div>
       <form v-on:submit.prevent="createComment()">
         <ul>
@@ -770,8 +648,75 @@
         <br />
         <button v-on:click="destroyComment(comment)">Delete Comment</button>
       </div>
+    </div> -->
+    <div
+      class="modal fade"
+      id="comment-details"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content video-modal rounded overflow-hidden">
+          <div class="ratio ratio-16x9">
+            <div class="row">
+              <div class="col-12 mt-4 pt-2">
+                <form class="p-4 shadow rounded">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label">Edit Comment</label>
+                        <textarea
+                          id="message"
+                          v-model="currentComment.body"
+                          rows="5"
+                          name="message"
+                          class="form-control"
+                          required=""
+                        ></textarea>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label">Image</label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          v-model="currentComment.image_url"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <!--end col-->
+
+                    <div class="col-md-12">
+                      <div class="send d-grid">
+                        <button
+                          v-on:click="updateComment(currentComment)"
+                          class="btn btn-primary"
+                        >
+                          Update Comment
+                        </button>
+                      </div>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
+                <!--end form-->
+              </div>
+              <!--end col-->
+            </div>
+          </div>
+          <!--If you want to use the Vimeo link please try the above code-->
+        </div>
+      </div>
     </div>
-    <dialog id="comment-details">
+    <!-- <dialog id="comment-details">
       <form method="dialog">
         <h1>Edit Comment</h1>
         <p>Body: <input type="text" v-model="currentComment.body" /></p>
@@ -782,7 +727,7 @@
         <button v-on:click="updateComment(currentComment)">Update</button>
         <button>Close</button>
       </form>
-    </dialog>
+    </dialog> -->
   </div>
 </template>
 
