@@ -41,7 +41,7 @@ export default {
         })
         .catch((error) => {
           console.log("login error", error.response);
-          this.errors = error.response.data.errors;
+          this.errors = ["Invalid Username or Password"];
         });
     },
   },

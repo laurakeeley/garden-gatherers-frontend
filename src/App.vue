@@ -1,6 +1,79 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <header id="topnav" class="defaultscroll sticky bg-white">
+      <div class="container">
+        <!-- Logo container-->
+        <div>
+          <a class="logo" href="index.html"
+            ><img src="/images/logo.png" height="28" alt=""
+          /></a>
+        </div>
+        <div class="buy-button">
+          <a
+            href="https://wrapbootstrap.com/theme/leaping-multipurpose-landing-dark-rtl-WB02N8039"
+            target="_blank"
+            class="btn btn-primary"
+            >Purchase Now</a
+          >
+        </div>
+        <!--end login button-->
+        <!-- End Logo container-->
+        <div class="menu-extras">
+          <div class="menu-item">
+            <!-- Mobile menu toggle-->
+            <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+              <div class="lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </a>
+            <!-- End mobile menu toggle-->
+          </div>
+        </div>
+
+        <div id="navigation">
+          <!-- Navigation Menu-->
+          <ul class="navigation-menu">
+            <li class="has-submenu parent-parent-menu-item">
+              <a href="javascript:void(0)">Categories</a
+              ><span class="menu-arrow"></span>
+              <ul class="submenu megamenu">
+                <li>
+                  <ul>
+                    <li>
+                      <router-link to="/categories/1" class="sub-menu-item"
+                        >Plants</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/categories/2" class="sub-menu-item"
+                        >Bees</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/categories/3" class="sub-menu-item"
+                        >Flowers</router-link
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <router-link to="/meetups" class="sub-menu-item"
+                >Meetups</router-link
+              >
+            </li>
+          </ul>
+          <!--end navigation menu-->
+        </div>
+        <!--end navigation-->
+      </div>
+      <!--end container-->
+    </header>
+    <!-- <div id="nav">
       <router-link to="/">Garden Gatherers</router-link> |
       <router-link to="/categories/1">Plants</router-link> |
       <router-link to="/categories/2">Bees</router-link> |
@@ -14,33 +87,132 @@
         | <router-link to="/logout">Logout</router-link> |
         <router-link :to="`/users/${getUserId()}`">Me</router-link>
       </span>
-    </div>
+    </div> -->
     <router-view :key="$route.fullPath" />
+
+    <footer class="footer bg-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+            <a class="logo-footer text-light" href="#"
+              ><img src="images/logo-light.png" height="28" alt=""
+            /></a>
+            <p class="mt-4">
+              Build responsive, mobile-first projects on the web with the
+              world's most popular front-end component library.
+            </p>
+          </div>
+          <!--end col-->
+
+          <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+            <h4 class="text-light footer-head">Landing</h4>
+            <ul class="list-unstyled footer-list mt-4">
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Agency</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Software</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Startup</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Business</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Hosting</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Studio</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!--end col-->
+
+          <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+            <h4 class="text-light footer-head">About</h4>
+            <ul class="list-unstyled footer-list mt-4">
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> About us</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Services</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Team</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Terms Policy</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Login</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!--end col-->
+
+          <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+            <h4 class="text-light footer-head">Locations</h4>
+            <ul class="list-unstyled footer-list mt-4">
+              <li>
+                <a href="#" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> San Francisco</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Tokio</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> South Korea</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-foot"
+                  ><i class="mdi mdi-chevron-right me-1"></i> Myanmar</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
+      </div>
+      <!--end container-->
+    </footer>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>
 
 <script>
 export default {

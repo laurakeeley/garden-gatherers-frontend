@@ -12,6 +12,7 @@ import "froala-editor/js/third_party/image_tui.min";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 // Import and use Vue Froala lib.
 import VueFroala from "vue-froala-wysiwyg";
+
 Vue.use(VueFroala);
 
 axios.defaults.baseURL =
