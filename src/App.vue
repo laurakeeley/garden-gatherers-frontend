@@ -8,14 +8,7 @@
             ><img src="/images/logo.png" height="28" alt=""
           /></a>
         </div>
-        <div class="buy-button">
-          <a
-            href="https://wrapbootstrap.com/theme/leaping-multipurpose-landing-dark-rtl-WB02N8039"
-            target="_blank"
-            class="btn btn-primary"
-            >Purchase Now</a
-          >
-        </div>
+
         <!--end login button-->
         <!-- End Logo container-->
         <div class="menu-extras">
@@ -66,6 +59,28 @@
                 >Meetups</router-link
               >
             </li>
+
+            <li v-if="!isLoggedIn()">
+              <router-link to="/login" class="sub-menu-item">Login</router-link>
+            </li>
+            <li v-if="!isLoggedIn()">
+              <router-link to="/signup" class="sub-menu-item"
+                >Signup</router-link
+              >
+            </li>
+            <li v-if="isLoggedIn()">
+              <router-link to="/logout" class="sub-menu-item"
+                >Logout</router-link
+              >
+            </li>
+            <div v-if="isLoggedIn()" class="buy-button">
+              <router-link
+                :to="`/users/${getUserId()}`"
+                target="_blank"
+                class="btn btn-primary"
+                >My Profile</router-link
+              >
+            </div>
           </ul>
           <!--end navigation menu-->
         </div>
