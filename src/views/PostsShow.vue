@@ -54,7 +54,6 @@
                         class="text-dark name"
                         >{{ post.user.name }}</router-link
                       >
-                      >
                     </h6>
                   </div>
                 </div>
@@ -86,38 +85,6 @@
                           ></i
                           >3 Comments</a
                         >
-                      </li>
-                    </ul>
-                  </div>
-                  <!--end col-->
-
-                  <div class="col-sm-6 mt-4 mt-sm-0">
-                    <ul class="list-inline text-sm-end mb-0">
-                      <li class="list-inline-item me-1 text-muted">Share :</li>
-                      <li class="list-inline-item me-1">
-                        <a href="javascript:void(0)" class="text-muted"
-                          ><i class="mdi mdi-facebook"></i
-                        ></a>
-                      </li>
-                      <li class="list-inline-item me-1">
-                        <a href="javascript:void(0)" class="text-muted"
-                          ><i class="mdi mdi-twitter"></i
-                        ></a>
-                      </li>
-                      <li class="list-inline-item me-1">
-                        <a href="javascript:void(0)" class="text-muted"
-                          ><i class="mdi mdi-instagram"></i
-                        ></a>
-                      </li>
-                      <li class="list-inline-item me-1">
-                        <a href="javascript:void(0)" class="text-muted"
-                          ><i class="mdi mdi-linkedin"></i
-                        ></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="javascript:void(0)" class="text-muted"
-                          ><i class="mdi mdi-skype"></i
-                        ></a>
                       </li>
                     </ul>
                   </div>
