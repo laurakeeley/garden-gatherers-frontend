@@ -280,6 +280,63 @@
             <!--end row-->
             <!-- Recent Post Start -->
 
+            <!-- Leave Comments Start -->
+            <div v-if="$parent.isLoggedIn()" class="row">
+              <div class="col-12 mt-4 pt-2">
+                <div class="section-title">
+                  <h5 class="mb-0">Leave A Comment :</h5>
+                  <ul>
+                    <li v-for="error in errors" v-bind:key="error">
+                      {{ error }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div v-if="$parent.isLoggedIn()" class="row">
+              <div class="col-12 mt-4 pt-2">
+                <form
+                  v-on:submit.prevent="createComment()"
+                  class="p-4 shadow rounded"
+                >
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label">Your Comment</label>
+                        <textarea
+                          id="message"
+                          v-model="newCommentParams.body"
+                          placeholder="Your Comment"
+                          rows="5"
+                          name="message"
+                          class="form-control"
+                          required=""
+                        ></textarea>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-md-12">
+                      <div class="send d-grid">
+                        <button type="submit" class="btn btn-primary">
+                          Send Comment
+                        </button>
+                      </div>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
+                <!--end form-->
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+            <!-- Leave Comments End -->
+
             <!-- Comments Start -->
             <div class="row">
               <div class="col-12 mt-4 pt-2">
@@ -351,88 +408,6 @@
               </div>
             </div>
             <!-- Comments End -->
-
-            <!-- Leave Comments Start -->
-            <div class="row">
-              <div class="col-12 mt-4 pt-2">
-                <div class="section-title">
-                  <h5 class="mb-0">Leave A Comment :</h5>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-
-            <div class="row">
-              <div class="col-12 mt-4 pt-2">
-                <form class="p-4 shadow rounded">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="mb-3">
-                        <label class="form-label">Your Comment</label>
-                        <textarea
-                          id="message"
-                          placeholder="Your Comment"
-                          rows="5"
-                          name="message"
-                          class="form-control"
-                          required=""
-                        ></textarea>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <label class="form-label"
-                          >Name <span class="text-danger">*</span></label
-                        >
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          placeholder="Name"
-                          class="form-control"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <label class="form-label"
-                          >Your Email <span class="text-danger">*</span></label
-                        >
-                        <input
-                          id="email"
-                          type="email"
-                          placeholder="Email"
-                          name="email"
-                          class="form-control"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-md-12">
-                      <div class="send d-grid">
-                        <button type="submit" class="btn btn-primary">
-                          Send Comment
-                        </button>
-                      </div>
-                    </div>
-                    <!--end col-->
-                  </div>
-                  <!--end row-->
-                </form>
-                <!--end form-->
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-            <!-- Leave Comments End -->
           </div>
           <!--end col-->
 
