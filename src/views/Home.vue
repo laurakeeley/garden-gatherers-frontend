@@ -1,8 +1,28 @@
 <template>
   <div class="home">
-    <div>Search: <input type="text" v-model="postAttribute" /></div>
+    <!-- <div>Search: <input type="text" v-model="postAttribute" /></div> -->
     <!-- Start Blog -->
     <section class="section">
+      <!-- SEARCH -->
+      <div class="widget mb-4 pb-2">
+        <div id="search2" class="widget-search mb-0">
+          <form role="search" method="get" id="searchform" class="searchform">
+            <div>
+              <input
+                type="text"
+                v-model="postAttribute"
+                class="border rounded"
+                name="s"
+                id="s"
+                placeholder="Search Keywords..."
+              />
+              <input type="submit" id="searchsubmit" value="Search" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- SEARCH -->
+
       <div class="container">
         <div class="row">
           <div
