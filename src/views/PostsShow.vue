@@ -34,6 +34,23 @@
                   post.title
                 }}</a>
               </h2>
+              <!-- <a href="#" class="btn btn-outline-primary"> Primary </a> -->
+              <div class="row">
+                <div v-if="$parent.getUserId() == post.user.id">
+                  <router-link
+                    :to="`/posts/${post.id}/edit`"
+                    class="btn btn-outline-primary"
+                    >Edit</router-link
+                  >
+                  <button
+                    v-on:click="destroyPost()"
+                    class="btn btn-outline-danger"
+                  >
+                    Delete Post
+                  </button>
+                </div>
+              </div>
+
               <div class="mt-4">
                 <div class="d-flex">
                   <img

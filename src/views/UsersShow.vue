@@ -33,6 +33,21 @@
                           {{ user.location }}</a
                         ></small
                       >
+                      <div class="row">
+                        <div v-if="$parent.getUserId() == user.id">
+                          <router-link
+                            :to="`/users/${user.id}/edit`"
+                            class="btn btn-outline-primary btn-md"
+                            >Edit</router-link
+                          >
+                          <button
+                            v-on:click="destroyUser()"
+                            class="btn btn-outline-danger btn-md"
+                          >
+                            Delete User
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <!--end col-->
                   </div>
