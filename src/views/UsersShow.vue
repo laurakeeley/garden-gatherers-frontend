@@ -33,21 +33,56 @@
                           {{ user.location }}</a
                         ></small
                       >
-                      <div class="row">
-                        <div v-if="$parent.getUserId() == user.id">
-                          <router-link
-                            :to="`/users/${user.id}/edit`"
-                            class="btn btn-outline-primary btn-md"
-                            >Edit</router-link
-                          >
-                          <button
-                            v-on:click="destroyUser()"
-                            class="btn btn-outline-danger btn-md"
-                          >
-                            Delete User
-                          </button>
-                        </div>
+
+                      <div v-if="$parent.getUserId() == user.id" class="row">
+                        <ul
+                          class="
+                            col
+                            container-filter
+                            categories-filter
+                            list-unstyled
+                            mb-0
+                          "
+                          id="filter"
+                        >
+                          <li class="list-inline-item">
+                            <router-link
+                              :to="`/users/${user.id}/edit`"
+                              class="
+                                categories-name
+                                tab-active
+                                border
+                                d-block
+                                text-dark
+                                rounded
+                                mx-1
+                                px-3
+                                active
+                              "
+                              >Edit</router-link
+                            >
+                          </li>
+                          <li class="list-inline-item">
+                            <router-link
+                              to="/"
+                              class="
+                                categories-name
+                                tab-active
+                                border
+                                d-block
+                                text-dark
+                                rounded
+                                mx-1
+                                px-3
+                                active
+                              "
+                              v-on:click="destroyUser()"
+                              >Delete</router-link
+                            >
+                          </li>
+                        </ul>
                       </div>
+                      <!--end row-->
                     </div>
                     <!--end col-->
                   </div>
@@ -68,69 +103,46 @@
     <!--end section-->
     <!-- Hero End -->
 
-    <!-- Post Start -->
-    <div class="row">
-      <div class="col-12 mt-4 pt-2">
-        <div
-          v-for="post in filterBy(user.posts, postAttribute)"
-          v-bind:key="post.id"
-          class="profile-post rounded border position-relative overflow-hidden"
-        >
-          <div class="author d-flex bg-light p-3">
-            <img
-              v-bind:src="user.image_url"
-              v-bind:alt="user.name"
-              class="img-fluid avatar avatar-small rounded-pill me-3 shadow"
-            />
-            <div class="author mt-2 pt-1">
-              <h6 class="mb-0">
-                <a href="javascript:void(0)" class="text-dark">{{
-                  user.name
-                }}</a>
-              </h6>
-              <small class="text-muted"
-                >Created: {{ calendarDate(post.created_at) }}</small
-              >
-              <br />
-              <small
-                v-if="post.created_at != post.updated_at"
-                class="text-muted"
-                >Updated {{ relativeDate(post.updated_at) }}</small
-              >
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div
+            v-for="post in filterBy(user.posts, postAttribute)"
+            v-bind:key="post.id"
+            class="col-lg-3 col-md-6"
+          >
+            <div class="feature p-4 shadow rounded text-center">
+              <img
+                v-bind:src="post.image_url"
+                v-bind:alt="post.title"
+                class="img-fluid rounded-top"
+              />
+              <div class="content">
+                <h4 class="title mt-3">{{ post.title }}</h4>
+                <p
+                  v-html="`${post.body.slice(0, 100)}...`"
+                  key=""
+                  class="text-muted mt-2 mb-0"
+                ></p>
+              </div>
             </div>
           </div>
-          <div class="p-3">
-            <h2>
-              <router-link :to="`/posts/${post.id}`">{{
-                post.title
-              }}</router-link>
-            </h2>
-            <p v-html="post.body" class="text-muted mb-0"></p>
-          </div>
-
-          <div class="p-3">
-            <span class="float-end"
-              ><router-link
-                :to="`/posts/${post.id}`"
-                class="text-muted comments"
-                ><i class="mdi mdi-comment-outline"></i>Comments</router-link
-              ></span
-            >
-          </div>
+          <!--end col-->
         </div>
+        <!--end row-->
       </div>
-      <!--end col-->
-    </div>
-    <!--end row-->
+      <!--end container-->
+    </section>
+    <!--end section-->
 
-    <div>
+    <!-- <div>
       <div v-if="$parent.getUserId() == user.id">
         <button :to="`/users/${user.id}/edit`">Edit</button>
         <br />
         <button v-on:click="destroyUser()">Delete User</button>
       </div>
-    </div>
-    <div>Search: <input type="text" v-model="postAttribute" /></div>
+    </div> -->
+    <!-- <div>Search: <input type="text" v-model="postAttribute" /></div>
     <div
       v-for="post in filterBy(user.posts, postAttribute)"
       v-bind:key="post.id"
@@ -138,12 +150,12 @@
       <h2>
         <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
       </h2>
-      <p>{{ post.body }}</p>
-      <!-- <p>Category: {{ post.category.title }}</p> -->
-      <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+      <p>{{ post.body }}</p> -->
+    <!-- <p>Category: {{ post.category.title }}</p> -->
+    <!-- <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <p>Created: {{ calendarDate(post.created_at) }}</p>
       <p>Updated: {{ relativeDate(post.updated_at) }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 

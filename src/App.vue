@@ -74,10 +74,7 @@
               >
             </li>
             <div v-if="isLoggedIn()" class="buy-button">
-              <router-link
-                :to="`/users/${getUserId()}`"
-                target="_blank"
-                class="btn btn-primary"
+              <router-link :to="`/users/${getUserId()}`" class="btn btn-primary"
                 >My Profile</router-link
               >
             </div>

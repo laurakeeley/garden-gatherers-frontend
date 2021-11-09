@@ -90,11 +90,14 @@
                           placeholder="Post Title"
                         />
                       </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label class="form-label">Category :</label>
                         <select
                           v-model="newPostParams.category_id"
-                          class="form-select mt-2"
+                          class="form-select form-control"
                           aria-label="Default select example"
                         >
                           <option

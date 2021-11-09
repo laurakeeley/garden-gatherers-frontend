@@ -3,7 +3,7 @@
     <!-- Hero Start -->
     <section
       class="bg-half-170 bg-light d-table w-100"
-      style="background: url('images/bg.jpg') center center"
+      style="background: url('/images/bg.jpg') center center"
     >
       <div class="bg-overlay bg-overlay-white"></div>
       <div class="container">
@@ -90,11 +90,14 @@
                           placeholder="Post Title"
                         />
                       </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label class="form-label">Category :</label>
                         <select
                           v-model="post.category_id"
-                          class="form-select mt-2"
+                          class="form-select form-control"
                           aria-label="Default select example"
                         >
                           <option
@@ -189,6 +192,7 @@ export default {
   data: function () {
     return {
       post: {},
+      categories: [],
       errors: [],
       editPostParams: {},
       config: {
@@ -204,6 +208,11 @@ export default {
     axios.get("/posts/" + this.$route.params.id).then((response) => {
       console.log("posts show", response.data);
       this.post = response.data;
+      this.post.category_id = this.post.category.id;
+    });
+    axios.get("/categories").then((response) => {
+      console.log("categories index", response.data);
+      this.categories = response.data;
     });
   },
   methods: {
@@ -213,13 +222,13 @@ export default {
     calendarDate: function (created_at) {
       return dayjs(created_at).calendar();
     },
-    updatePost: function (post) {
-      var editPostParams = post;
+    updatePost: function () {
+      var editPostParams = this.post;
       axios
         .patch("/posts/" + this.$route.params.id, editPostParams)
         .then((response) => {
           console.log("posts update", response);
-          this.$router.push("/posts/" + post.id);
+          this.$router.push("/posts/" + this.post.id);
         })
         .catch((error) => {
           console.log("posts update error", error.response);

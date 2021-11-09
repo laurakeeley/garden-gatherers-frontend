@@ -43,18 +43,30 @@
       <div class="container">
         <!-- SEARCH -->
         <div class="widget mb-4 pb-2">
-          <div id="search2" class="widget-search mb-0">
-            <form role="search" method="get" id="searchform" class="searchform">
+          <div id="search2" class="col-md-6">
+            <form
+              role="search"
+              method="get"
+              id="searchform"
+              class="rounded shadow p-4"
+            >
               <div>
                 <input
                   type="text"
                   v-model="postAttribute"
-                  class="border rounded"
+                  class="form-control"
                   name="s"
                   id="s"
                   placeholder="Search Keywords..."
                 />
-                <input type="submit" id="searchsubmit" value="Search" />
+                <div class="mt-1">
+                  <input
+                    type="submit"
+                    id="searchsubmit"
+                    value="Search"
+                    class="submitBnt btn btn-primary"
+                  />
+                </div>
               </div>
             </form>
           </div>
@@ -98,7 +110,10 @@
                     >{{ post.title }}</router-link
                   >
                 </h4>
-                <div v-html="post.body" class="text-muted mt-2"></div>
+                <div
+                  v-html="`${post.body.slice(0, 100)}...`"
+                  class="text-muted mt-2"
+                ></div>
                 <div class="pt-3 mt-3 border-top d-flex">
                   <img
                     v-bind:src="post.user.image_url"
