@@ -3,7 +3,7 @@
     <!-- Hero Start -->
     <section
       class="bg-profile bg-light d-table w-100"
-      style="background: url('/images/bg-profile.jpg') center center"
+      style="background: url('/images/flowers zoomed.jpg') center center"
     >
       <div class="profile-overlay"></div>
       <div class="container">

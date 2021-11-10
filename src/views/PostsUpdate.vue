@@ -3,7 +3,10 @@
     <!-- Hero Start -->
     <section
       class="bg-half-170 bg-light d-table w-100"
-      style="background: url('/images/bg.jpg') center center"
+      style="
+        background: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhbnRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')
+          center center;
+      "
     >
       <div class="bg-overlay bg-overlay-white"></div>
       <div class="container">
@@ -112,6 +115,21 @@
                       </div>
                     </div>
                     <!--end col-->
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label"
+                          >Image :<span class="text-danger">*</span></label
+                        >
+                        <input
+                          v-model="post.image_url"
+                          name="name"
+                          id="name"
+                          type="text"
+                          class="form-control"
+                          placeholder="Post Image"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="mb-3">
@@ -133,7 +151,7 @@
                         id="submit"
                         name="send"
                         class="submitBnt btn btn-primary"
-                        value="Create"
+                        value="Submit"
                       />
                       <ul>
                         <li v-for="error in errors" v-bind:key="error">

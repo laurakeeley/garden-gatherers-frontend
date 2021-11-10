@@ -202,6 +202,17 @@
                         ></textarea>
                       </div>
                     </div>
+                    <div class="mb-3">
+                      <label class="form-label">Image</label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        v-model="newCommentParams.image_url"
+                        class="form-control"
+                        placeholder="Your Image"
+                      />
+                    </div>
                     <!--end col-->
 
                     <div class="col-md-12">
@@ -282,8 +293,14 @@
                           }}</small>
                         </div>
                       </div>
-                      <div class="mt-3">
+                      <div class="row mt-3">
                         <p class="text-muted fst-italic p-3 bg-light rounded">
+                          <img
+                            v-bind:src="comment.image_url"
+                            v-bind:alt="comment.user"
+                            p
+                            class="img-fluid avatar avatar-medium rounded"
+                          />
                           {{ comment.body }}
                         </p>
                       </div>
@@ -357,24 +374,22 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content video-modal rounded overflow-hidden">
+        <div class="modal-content rounded">
           <div class="ratio ratio-16x9">
             <div class="row">
-              <div class="col-12 mt-4 pt-2">
+              <div class="col-12 mt-2 ms-2 pt-2">
                 <form class="p-4 shadow rounded">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="mb-3">
-                        <label class="form-label">Edit Comment</label>
-                        <textarea
-                          id="message"
-                          v-model="currentComment.body"
-                          rows="5"
-                          name="message"
-                          class="form-control"
-                          required=""
-                        ></textarea>
-                      </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label">Edit Comment</label>
+                      <textarea
+                        id="message"
+                        v-model="currentComment.body"
+                        rows="5"
+                        name="message"
+                        class="form-control"
+                        required=""
+                      ></textarea>
                     </div>
                     <!--end col-->
 

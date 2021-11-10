@@ -3,7 +3,7 @@
     <!-- Hero Start -->
     <section
       class="bg-half-170 bg-light d-table w-100"
-      style="background: url('images/bg.jpg') center center"
+      style="background: url('/images/seedling.jpg') center center"
     >
       <div class="bg-overlay bg-overlay-white"></div>
       <div class="container">
@@ -112,6 +112,21 @@
                       </div>
                     </div>
                     <!--end col-->
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label"
+                          >Image :<span class="text-danger">*</span></label
+                        >
+                        <input
+                          v-model="newPostParams.image_url"
+                          name="name"
+                          id="name"
+                          type="text"
+                          class="form-control"
+                          placeholder="Image"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="mb-3">
