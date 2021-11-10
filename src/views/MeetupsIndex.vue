@@ -30,7 +30,7 @@
                   >
                 </li>
                 <li class="list-inline-item">
-                  <span class="text-uppercase text-primary fw-bold"
+                  <span class="text-uppercase text-secondary fw-bold"
                     >Meetups</span
                   >
                 </li>
@@ -74,13 +74,14 @@
                 <div class="mt-3">
                   <span class="text-muted d-block"
                     ><i
-                      class="uil uil-airplay align-middle text-primary h5"
+                      class="mdi mdi-clock-outline align-middle text-primary h5"
                     ></i>
                     <a
                       href="https://1.envato.market/4n73n"
                       target="_blank"
                       class="text-muted"
-                      >{{ meetup.time }}</a
+                    >
+                      {{ calendarDate(meetup.time) }}</a
                     ></span
                   >
                   <span class="text-muted d-block"
@@ -123,6 +124,10 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
+
+var calendar = require("dayjs/plugin/calendar");
+dayjs.extend(calendar);
 
 export default {
   data: function () {
@@ -134,6 +139,9 @@ export default {
     this.indexMeetups();
   },
   methods: {
+    calendarDate: function (created_at) {
+      return dayjs(created_at).calendar();
+    },
     indexMeetups: function () {
       axios.get("/meetups").then((response) => {
         console.log("meetups index", response);

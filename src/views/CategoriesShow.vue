@@ -78,7 +78,11 @@
         <!-- SEARCH -->
         <div class="row">
           <div
-            v-for="post in filterBy(category.posts, postAttribute)"
+            v-for="post in orderBy(
+              filterBy(category.posts, postAttribute),
+              calendarDate(),
+              -1
+            )"
             v-bind:key="post.id"
             class="col-lg-4 col-md-6 mb-4 pb-2"
           >

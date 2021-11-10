@@ -104,9 +104,14 @@
                   calendarDate(post.created_at)
                 }}</small>
                 <small
-                  ><a href="javascript:void(0)" class="text-primary">{{
-                    post.category.name
-                  }}</a></small
+                  ><router-link
+                    :to="`/categories/${post.category.id}`"
+                    class="text-primary"
+                    ><i
+                      class="mdi mdi-sprout align-middle text-secondary h5"
+                    ></i>
+                    {{ post.category.name }}</router-link
+                  ></small
                 >
                 <h4 class="mt-2">
                   <router-link
