@@ -6,7 +6,8 @@
         <div>
           <router-link class="logo mt-2" to="/"
             ><h3>
-              <i class="mdi mdi-sprout" height="28" alt="" />Garden Gatherers
+              <i class="mdi mdi-sprout text-primary" height="28" alt="" />Garden
+              Gatherers
             </h3></router-link
           >
         </div>
