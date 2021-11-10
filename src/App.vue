@@ -4,9 +4,11 @@
       <div class="container">
         <!-- Logo container-->
         <div>
-          <a class="logo" href="index.html"
-            ><img src="/images/logo.png" height="28" alt=""
-          /></a>
+          <router-link class="logo mt-2" to="/"
+            ><h3>
+              <i class="mdi mdi-sprout" height="28" alt="" />Garden Gatherers
+            </h3></router-link
+          >
         </div>
 
         <!--end login button-->
@@ -73,7 +75,12 @@
                 >Logout</router-link
               >
             </li>
-            <div v-if="isLoggedIn()" class="buy-button">
+            <div v-if="isLoggedIn()" class="buy-button ms-1">
+              <router-link to="/posts/new" class="btn btn-primary"
+                >Create a Post</router-link
+              >
+            </div>
+            <div v-if="isLoggedIn()" class="buy-button ms-1">
               <router-link :to="`/users/${getUserId()}`" class="btn btn-primary"
                 >My Profile</router-link
               >

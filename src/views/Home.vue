@@ -3,7 +3,10 @@
     <!-- Hero Start -->
     <section
       class="bg-half-170 bg-light d-table w-100"
-      style="background: url('images/bg.jpg') center center"
+      style="
+        background: url('/images/Screen Shot 2021-11-10 at 10.47.01 AM.png')
+          center center;
+      "
     >
       <div class="bg-overlay bg-overlay-white"></div>
       <div class="container">
@@ -11,7 +14,7 @@
           <div class="col-sm-6">
             <div class="text-sm-start">
               <div class="page-next-level">
-                <h4 class="title">Garden Gatherers</h4>
+                <h4 class="title"></h4>
               </div>
             </div>
           </div>
@@ -42,33 +45,35 @@
     <section class="section">
       <div class="container">
         <!-- SEARCH -->
-        <div class="widget mb-4 pb-2">
-          <div id="search2" class="col-md-6">
-            <form
-              role="search"
-              method="get"
-              id="searchform"
-              class="rounded shadow p-4"
-            >
-              <div>
-                <input
-                  type="text"
-                  v-model="postAttribute"
-                  class="form-control"
-                  name="s"
-                  id="s"
-                  placeholder="Search Keywords..."
-                />
-                <div class="mt-1">
+        <div class="widget mb-2 pb-2">
+          <div class="row">
+            <div id="search2" class="col-md-6">
+              <form
+                role="search"
+                method="get"
+                id="searchform"
+                class="rounded shadow p-4 mt-0"
+              >
+                <div>
                   <input
-                    type="submit"
-                    id="searchsubmit"
-                    value="Search"
-                    class="submitBnt btn btn-primary"
+                    type="text"
+                    v-model="postAttribute"
+                    class="form-control"
+                    name="s"
+                    id="s"
+                    placeholder="Search Keywords..."
                   />
+                  <div class="mt-1">
+                    <input
+                      type="submit"
+                      id="searchsubmit"
+                      value="Search"
+                      class="submitBnt btn btn-primary"
+                    />
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
         <!-- SEARCH -->

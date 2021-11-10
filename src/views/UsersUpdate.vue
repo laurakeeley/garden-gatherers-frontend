@@ -103,7 +103,7 @@
                           v-model="user.location"
                           name="location"
                           id="location"
-                          type="email"
+                          type="text"
                           class="form-control"
                           placeholder="Your location :"
                         />

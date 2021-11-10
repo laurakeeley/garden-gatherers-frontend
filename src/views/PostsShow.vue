@@ -17,7 +17,7 @@
             <div class="title-heading ms-lg-4">
               <ul class="list-unstyled">
                 <li class="list-inline-item h6 user text-muted me-2">
-                  <i class="mdi mdi-tag"></i>
+                  <i class="mdi mdi-sprout"></i>
                   <router-link
                     :to="`/categories/${post.category.id}`"
                     class="text-primary"
@@ -30,11 +30,56 @@
                 </li>
               </ul>
               <h2>
-                <a href="javascript:void(0)" class="text-dark">{{
-                  post.title
-                }}</a>
+                <a class="text-dark">{{ post.title }}</a>
               </h2>
-              <div class="row">
+              <div v-if="$parent.getUserId() == post.user.id">
+                <ul
+                  class="
+                    col
+                    container-filter
+                    categories-filter
+                    list-unstyled
+                    mb-0
+                  "
+                  id="filter"
+                >
+                  <li class="list-inline-item">
+                    <router-link
+                      :to="`/posts/${post.id}/edit`"
+                      class="
+                        categories-name
+                        tab-active
+                        border
+                        d-block
+                        text-dark
+                        rounded
+                        mx-1
+                        px-3
+                      "
+                      >Edit</router-link
+                    >
+                  </li>
+                  <li class="list-inline-item">
+                    <router-link
+                      to="/"
+                      class="
+                        categories-name
+                        tab-active
+                        border
+                        d-block
+                        text-dark
+                        rounded
+                        mx-1
+                        px-3
+                      "
+                      v-on:click="destroyPost()"
+                      >Delete</router-link
+                    >
+                  </li>
+                </ul>
+              </div>
+              <!--end row-->
+              <!-- <div class="row">
                 <div v-if="$parent.getUserId() == post.user.id">
                   <router-link
                     :to="`/posts/${post.id}/edit`"
@@ -48,7 +93,7 @@
                     Delete Post
                   </button>
                 </div>
-              </div>
+              </div> -->
 
               <div class="mt-4">
                 <div class="d-flex">
@@ -99,7 +144,7 @@
                           ><i
                             class="mdi mdi-comment-outline text-primary me-2"
                           ></i
-                          >3 Comments</a
+                          >{{ post.comments.length }} Comments</a
                         >
                       </li>
                     </ul>
@@ -429,7 +474,8 @@ export default {
         .post("/comments", this.newCommentParams)
         .then((response) => {
           console.log("new comment", response.data);
-          this.post.comments.push(response.data);
+          this.post.comments.unshift(response.data);
+          this.newCommentParams = "";
         })
         .catch((error) => {
           this.status = error.response.status;
@@ -461,6 +507,8 @@ export default {
     destroyComment: function (comment) {
       axios.delete("/comments/" + comment.id).then((response) => {
         console.log(response.data);
+        var index = this.post.comments.indexOf(comment);
+        this.post.comments.splice(index, 1);
       });
     },
   },

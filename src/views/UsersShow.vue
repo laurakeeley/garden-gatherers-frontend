@@ -24,11 +24,11 @@
                     <div
                       class="col-md-8 text-md-start text-center mt-4 mt-sm-0"
                     >
-                      <h3 class="title mb-0">{{ user.name }}</h3>
-                      <small class="text-warning h6"
+                      <h2 class="title mb-0">{{ user.name }}</h2>
+                      <small class="text-secondary h6 mb-2"
                         ><a
                           href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                          class="video-play-icon h6 text-warning googlemap"
+                          class="video-play-icon h6 text-secondary googlemap"
                           ><i class="mdi mdi-map-marker"></i>
                           {{ user.location }}</a
                         ></small
@@ -57,7 +57,6 @@
                                 rounded
                                 mx-1
                                 px-3
-                                active
                               "
                               >Edit</router-link
                             >
@@ -74,7 +73,6 @@
                                 rounded
                                 mx-1
                                 px-3
-                                active
                               "
                               v-on:click="destroyUser()"
                               >Delete</router-link
@@ -105,8 +103,59 @@
 
     <section class="section">
       <div class="container">
+        <!-- SEARCH -->
+        <div class="widget mb-4 pb-2">
+          <div class="row">
+            <div id="search2" class="col-md-4">
+              <form role="search" method="get" id="searchform">
+                <div>
+                  <input
+                    type="text"
+                    v-model="postAttribute"
+                    class="form-control"
+                    name="s"
+                    id="s"
+                    placeholder="Search Posts..."
+                  />
+                  <ul
+                    class="
+                      col
+                      container-filter
+                      categories-filter
+                      list-unstyled
+                      mb-0
+                      mt-1
+                    "
+                    id="filter"
+                  >
+                    <li class="list-inline-item">
+                      <a
+                        class="
+                          categories-name
+                          tab-active
+                          border
+                          d-block
+                          text-dark
+                          rounded
+                          mx-1
+                          px-3
+                          active
+                        "
+                        type="submit"
+                        id="searchsubmit"
+                        >Search</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- SEARCH -->
         <div class="row">
-          <div
+          <router-link
+            :to="`/posts/${post.id}`"
             v-for="post in filterBy(user.posts, postAttribute)"
             v-bind:key="post.id"
             class="col-lg-3 col-md-6"
@@ -126,7 +175,7 @@
                 ></p>
               </div>
             </div>
-          </div>
+          </router-link>
           <!--end col-->
         </div>
         <!--end row-->
