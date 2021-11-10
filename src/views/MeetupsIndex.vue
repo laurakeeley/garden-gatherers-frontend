@@ -3,7 +3,7 @@
     <!-- Hero Start -->
     <section
       class="bg-half-170 bg-light d-table w-100"
-      style="background: url('images/bg.jpg') center center"
+      style="background: url('/images/vegetable.jpg') center center"
     >
       <div class="bg-overlay bg-overlay-white"></div>
       <div class="container">
@@ -13,7 +13,8 @@
               <div class="page-next-level">
                 <h4 class="title">Meetups</h4>
                 <p class="text-muted mb-0">
-                  We present and write attractive blog posts
+                  Explore and learn more about what's going on in your
+                  neighborhood.
                 </p>
               </div>
             </div>
@@ -61,25 +62,6 @@
 
     <section class="section">
       <div class="container">
-        <div class="row align-items-end mb-4 pb-2">
-          <div class="col-lg-9 col-md-8">
-            <div class="section-title">
-              <h4 class="title mb-4">Latest Meetups</h4>
-              <p class="text-muted para-desc mb-0">
-                Explore and learn more about what's going on in your
-                neighborhood.
-              </p>
-            </div>
-          </div>
-          <!--end col-->
-
-          <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
-            <div class="form custom-form"></div>
-          </div>
-          <!--end col-->
-        </div>
-        <!--end row-->
-
         <div class="row">
           <div
             v-for="meetup in meetups"
