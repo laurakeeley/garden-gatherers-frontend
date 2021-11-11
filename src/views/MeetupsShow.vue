@@ -18,13 +18,18 @@
                 <ul class="mt-3 list-unstyled">
                   <li class="list-inline-item text-muted">
                     <i
-                      class="uil uil-airplay align-middle text-secondary h5"
+                      class="
+                        mdi mdi-clock-outline
+                        align-middle
+                        text-secondary
+                        h5
+                      "
                     ></i>
                     <a
                       href="https://1.envato.market/4n73n"
                       target="_blank"
                       class="text-dark"
-                      >{{ meetup.time }}</a
+                      >{{ calendarDate(meetup.time) }}</a
                     >
                   </li>
                   <li class="list-inline-item text-dark">
@@ -118,6 +123,10 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
+
+var calendar = require("dayjs/plugin/calendar");
+dayjs.extend(calendar);
 
 export default {
   data: function () {
@@ -131,6 +140,10 @@ export default {
       this.meetup = response.data;
     });
   },
-  methods: {},
+  methods: {
+    calendarDate: function (created_at) {
+      return dayjs(created_at).calendar();
+    },
+  },
 };
 </script>

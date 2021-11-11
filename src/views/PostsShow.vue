@@ -202,18 +202,6 @@
                         ></textarea>
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label class="form-label">Image</label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        v-model="newCommentParams.image_url"
-                        class="form-control"
-                        placeholder="Your Image"
-                      />
-                    </div>
-                    <!--end col-->
 
                     <div class="col-md-12">
                       <div class="send d-grid">
@@ -295,12 +283,6 @@
                       </div>
                       <div class="row mt-3">
                         <p class="text-muted fst-italic p-3 bg-light rounded">
-                          <img
-                            v-bind:src="comment.image_url"
-                            v-bind:alt="comment.user"
-                            p
-                            class="img-fluid avatar avatar-medium rounded"
-                          />
                           {{ comment.body }}
                         </p>
                       </div>

@@ -37,19 +37,11 @@
               <ul class="submenu megamenu">
                 <li>
                   <ul>
-                    <li>
-                      <router-link to="/categories/1" class="sub-menu-item"
-                        >Plants</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/categories/2" class="sub-menu-item"
-                        >Bees</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/categories/3" class="sub-menu-item"
-                        >Flowers</router-link
+                    <li v-for="category in categories" v-bind:key="category.id">
+                      <router-link
+                        :to="`/categories/${category.id}`"
+                        class="sub-menu-item"
+                        >{{ category.name }}</router-link
                       >
                     </li>
                   </ul>
@@ -117,44 +109,42 @@
             <a class="logo-footer text-light" href="#"
               ><img src="images/logo-light.png" height="28" alt=""
             /></a>
-            <p class="mt-4">
-              Build responsive, mobile-first projects on the web with the
-              world's most popular front-end component library.
-            </p>
+            <p class="mt-4">A place to gather, learn and grow.</p>
           </div>
           <!--end col-->
 
           <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-            <h4 class="text-light footer-head">Landing</h4>
+            <h4 class="text-light footer-head">Categories</h4>
             <ul class="list-unstyled footer-list mt-4">
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Agency</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Flowers</a
                 >
               </li>
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Software</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Bees</a
                 >
               </li>
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Startup</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Butterflies</a
                 >
               </li>
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Business</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Plants</a
                 >
               </li>
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Hosting</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Indoor
+                  Gardening</a
                 >
               </li>
               <li>
                 <a href="javascript:void(0)" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Studio</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Vegetables</a
                 >
               </li>
             </ul>
@@ -208,17 +198,17 @@
               </li>
               <li>
                 <a href="#" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Tokio</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Eau Claire</a
                 >
               </li>
               <li>
                 <a href="#" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> South Korea</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Portland</a
                 >
               </li>
               <li>
                 <a href="#" class="text-foot"
-                  ><i class="mdi mdi-chevron-right me-1"></i> Myanmar</a
+                  ><i class="mdi mdi-chevron-right me-1"></i> Chicago</a
                 >
               </li>
             </ul>
@@ -235,9 +225,19 @@
 <style></style>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
-    return {};
+    return {
+      categories: [],
+    };
+  },
+  created: function () {
+    axios.get("/categories").then((response) => {
+      console.log("categories index", response.data);
+      this.categories = response.data;
+    });
   },
   methods: {
     isLoggedIn: function () {

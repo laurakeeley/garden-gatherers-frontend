@@ -14,7 +14,14 @@
           <div class="col-sm-6">
             <div class="text-sm-start">
               <div class="page-next-level">
-                <h4 class="title"></h4>
+                <h2>
+                  <i
+                    class="mdi mdi-sprout text-secondary"
+                    height="28"
+                    alt=""
+                  />Garden Gatherers
+                </h2>
+                <h5 class="text-muted mb-0">A place to learn and grow.</h5>
               </div>
             </div>
           </div>
@@ -44,39 +51,32 @@
     <!-- Start Blog -->
     <section class="section">
       <div class="container">
-        <!-- SEARCH -->
-        <div class="widget mb-2 pb-2">
-          <div class="row">
-            <div id="search2" class="col-md-6">
-              <form
-                role="search"
-                method="get"
-                id="searchform"
-                class="rounded shadow p-4 mt-0"
-              >
-                <div>
+        <div class="row mt-3 mb-3 align-items-center">
+          <div class="col-md-6">
+            <div class="title-heading">
+              <div class="subcribe-form mt-4 pt-2">
+                <form action="">
                   <input
-                    type="text"
                     v-model="postAttribute"
-                    class="form-control"
-                    name="s"
-                    id="s"
-                    placeholder="Search Keywords..."
+                    type="text"
+                    id="keywords"
+                    class="shadow rounded-pill"
+                    required
+                    placeholder="Search Posts.."
                   />
-                  <div class="mt-1">
-                    <input
-                      type="submit"
-                      id="searchsubmit"
-                      value="Search"
-                      class="submitBnt btn btn-primary"
-                    />
-                  </div>
-                </div>
-              </form>
+                  <button type="submit" class="btn btn-primary rounded-pill">
+                    Search
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
+          <!--end col-->
         </div>
-        <!-- SEARCH -->
+        <!--end row-->
+      </div>
+      <!--end container-->
+      <div class="container">
         <div class="row">
           <div
             v-for="post in filterBy(posts, postAttribute)"

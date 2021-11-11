@@ -62,8 +62,7 @@
                             >
                           </li>
                           <li class="list-inline-item">
-                            <router-link
-                              to="/"
+                            <a
                               class="
                                 categories-name
                                 tab-active
@@ -75,7 +74,7 @@
                                 px-3
                               "
                               v-on:click="destroyUser()"
-                              >Delete</router-link
+                              >Delete</a
                             >
                           </li>
                         </ul>
@@ -167,7 +166,7 @@
                 class="img-fluid rounded-top"
               />
               <div class="content">
-                <h4 class="title mt-3">{{ post.title }}</h4>
+                <h4 class="title mt-3 text-dark">{{ post.title }}</h4>
                 <p
                   v-html="`${post.body.slice(0, 100)}...`"
                   key=""
@@ -239,6 +238,8 @@ export default {
     destroyUser: function () {
       axios.delete("/users/me").then((response) => {
         console.log(response.data);
+        delete axios.defaults.headers.common["Authorization"];
+        localStorage.removeItem("jwt");
         this.$router.push("/");
       });
     },
