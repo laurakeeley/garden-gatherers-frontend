@@ -60,8 +60,7 @@
                     >
                   </li>
                   <li class="list-inline-item">
-                    <router-link
-                      to="/"
+                    <a
                       class="
                         categories-name
                         tab-active
@@ -73,7 +72,7 @@
                         px-3
                       "
                       v-on:click="destroyPost()"
-                      >Delete</router-link
+                      >Delete</a
                     >
                   </li>
                 </ul>
