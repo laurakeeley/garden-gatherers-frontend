@@ -16,7 +16,9 @@ import VueFroala from "vue-froala-wysiwyg";
 Vue.use(VueFroala);
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://gardengatherers.herokuapp.com/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
